@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>Crear préstamo</h1>
+
+  <form>
+      <mat-form-field>
+          <mat-label>Identificador</mat-label>
+          <input type="text" matInput placeholder="Identificador" [(ngModel)]="prestamo.id" name="id" disabled>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nombre del juego</mat-label>
+        <mat-select disableRipple [(ngModel)]="filterGames" name="games" required>
+            @for (game of games; track game.id) {
+                <mat-option [value]="game">{{ game.title }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+      <mat-form-field>
+          <mat-label>Nombre del Cliente</mat-label>
+          <mat-select disableRipple [(ngModel)]="filterClients" name="client" required>
+              @for (client of clients; track client.id) {
+                  <mat-option [value]="client">{{ client.name }}</mat-option>
+              }
+          </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Fechas de préstamo</mat-label>
+        <input type="date" matInput placeholder="Fecha inicio" [(ngModel)]="prestamo.ini" name="ini" required>
+        <mat-error>La fecha de inicio no puede estar vacía</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="date" matInput placeholder="Fecha fin" [(ngModel)]="prestamo.end" name="end" required>
+        <mat-error>La fecha de fin no puede estar vacía</mat-error>
+      </mat-form-field>
+  </form>
+
+  <div class="buttons">
+      <button mat-stroked-button (click)="onClose()">Cerrar</button>
+      <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+  </div>
+</div>
+
