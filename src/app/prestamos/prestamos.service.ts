@@ -10,6 +10,7 @@ import { PRESTAMOS_DATA } from './model/mock-prestamos';
     providedIn: 'root',
 })
 export class PrestamosService {
+    filterDate: any;
     constructor(private http: HttpClient) {}
 
     private baseUrl = 'http://localhost:8080/prestamo';
@@ -23,7 +24,8 @@ export class PrestamosService {
           params += 'clientName=' + clientName + '&';
       }
       if(date != null){
-        params += 'date=' + date.toISOString();
+        const formattedDate = date.toISOString().split('T')[0]; // Convert date to 'yyyy-MM-dd' format
+        params += 'date=' + formattedDate;
       }
 
       if(params === ''){
