@@ -109,7 +109,7 @@ export class PrestamosListComponent implements OnInit {
 
         const clientsName = this.filterClients != null ? this.filterClients.name : null;
         const gameName = this.filterGames != null ? this.filterGames.title : null;
-        const date = this.filterDate;
+        const date: Date = this.filterDate ? new Date(this.filterDate) : null;
 
         this.prestamosService.getPrestamos(pageable, gameName, clientsName, date)
         .subscribe((data) => {
